@@ -53,14 +53,15 @@ document.querySelectorAll("button").forEach((button) => {
         guestList.push(guestList.shift());
         break;
     }
+    window.localStorage.setItem("guestList", JSON.stringify(guestList));
     updateGuestList();
   });
 });
 
 function updateGuestList() {
-  document.querySelector("body > main > div.guest-list > ol")
-    ? document.querySelector("body > main > div.guest-list > ol").remove()
-    : null;
+  if (document.querySelector("body > main > div.guest-list > ol")) {
+    document.querySelector("body > main > div.guest-list > ol").remove();
+  }
   const guestListOl = document.createElement("ol");
   guestList.forEach((guest) => {
     const singleGuest = document.createElement("li");
@@ -69,11 +70,10 @@ function updateGuestList() {
   });
 
   document.querySelector(".guest-list").appendChild(guestListOl);
-  window.localStorage.setItem("guestList", JSON.stringify(guestList));
 }
 
 window.addEventListener("load", () => {
-  if (JSON.parse(window.localStorage.getItem("guestList"))) {
+  if (window.localStorage.getItem("guestList")) {
     const guestListData = JSON.parse(window.localStorage.getItem("guestList"));
     guestList = guestListData;
     updateGuestList();
