@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+      integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="./index.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <nav class="nav nav--fixed">
+      <div class="nav__company-logo">
+        <i class="fa-solid fa-clipboard-list"></i>
+      </div>
+      <div class="nav__company-name"><h2>GuestListApp</h2></div>
+    </nav>
+    <main>
+      <div class="guest-management">
+        <div class="guest-management__title">
+          <h2>Manage Your Guest List!</h2>
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="Guest Full Name"
+            class="guest-management__input"
+          />
+        </div>
+        <div><button data-operator="push">Add Guest to List End</button></div>
+        <div>
+          <button data-operator="unshift">Add Guest to List Start</button>
+        </div>
+        <div><button data-operator="shift">Remove First</button></div>
+        <div><button data-operator="pop">Remove Last</button></div>
+        <div><button data-operator="reverse">Reverse List</button></div>
+        <div>
+          <button data-operator="moveLastToFirst">
+            Move Last Guest to First
+          </button>
+        </div>
+        <div>
+          <button data-operator="moveFirstToLast">
+            Move First Guest to Last
+          </button>
+        </div>
+        <div class="advanced-management">
+          <div class="advanced-management__title">
+            <h2>Advanced Guest Management Operators</h2>
+          </div>
+          <div>
+            <input
+              type="number"
+              class="advanced-management__input"
+              placeholder="Remove From - Position"
+            />
+            <input
+              type="number"
+              class="advanced-management__input"
+              placeholder="Remove To - Position"
+            />
+          </div>
+          <div>
+            <button data-operator="removeFromTo">Remove From To</button>
+          </div>
+          <div>
+            <input
+              class="advanced-management__second-input"
+              placeholder="Guest Full Name"
+              type="text"
+            />
+            <input
+              class="advanced-management__second-input"
+              type="number"
+              placeholder="Desire Place for Guest"
+            />
+          </div>
+          <div>
+            <button data-operator="atCertainPoint">
+              Add Guest at Certain Point
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="guest-list">
+        <div><h2 class="guest-list__title">Guest List:</h2></div>
+      </div>
+    </main>
+  </body>
+</html>
