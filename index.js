@@ -1,65 +1,59 @@
 let guestList = [];
 
-const input = document.querySelector(
-  "body > main > div.guest-management > div:nth-child(2) > input"
-);
+const input = document.querySelector('input[name="guestFullName"]');
 
 document.querySelectorAll("button").forEach((button) => {
   button.addEventListener("click", (e) => {
     e.preventDefault();
-    if (e.target.dataset.operator === "push") {
-      guestList.push(input.value);
-      updateGuestList();
-    } else if (e.target.dataset.operator === "unshift") {
-      guestList.unshift(input.value);
-      updateGuestList();
-    } else if (e.target.dataset.operator === "shift") {
-      guestList.shift();
-      updateGuestList();
-    } else if (e.target.dataset.operator === "pop") {
-      guestList.pop();
-      updateGuestList();
-    } else if (e.target.dataset.operator === "reverse") {
-      const reversedArray = guestList.reverse();
-      guestList = reversedArray;
-      updateGuestList();
-    } else if (e.target.dataset.operator === "removeFromTo") {
-      const removeFrom = Number(
-        document.querySelector(
-          "body > main > div.guest-management > div.advanced-management > div:nth-child(2) > input:nth-child(1)"
-        ).value - 1
-      );
-      const removeTo = Number(
-        document.querySelector(
-          "body > main > div.guest-management > div.advanced-management > div:nth-child(2) > input:nth-child(2)"
-        ).value - 1
-      );
-      if (removeFrom >= 0 && removeTo >= 0) {
-        guestList.splice(removeFrom, removeTo);
-        updateGuestList();
-      } else if (removeFrom >= 0 && removeTo <= 0) {
-        guestList.splice(removeFrom, removeFrom);
-        updateGuestList();
-      }
-    } else if (e.target.dataset.operator === "atCertainPoint") {
-      const insertAt =
-        document.querySelector(
-          "body > main > div.guest-management > div.advanced-management > div:nth-child(4) > input:nth-child(2)"
-        ).value - 1;
-      console.log(insertAt);
-      const guestName = document.querySelector(
-        "body > main > div.guest-management > div.advanced-management > div:nth-child(4) > input:nth-child(1)"
-      ).value;
-      console.log(guestName);
-      guestList.splice(insertAt, 0, guestName);
-      updateGuestList();
-    } else if (e.target.dataset.operator === "moveLastToFirst") {
-      guestList.unshift(guestList.pop());
-      updateGuestList();
-    } else if (e.target.dataset.operator === "moveFirstToLast") {
-      guestList.push(guestList.shift());
-      updateGuestList();
+    switch (e.target.name) {
+      case "push":
+        guestList.push(input.value);
+        break;
+      case "unshift":
+        guestList.unshift(input.value);
+        break;
+      case "shift":
+        guestList.shift();
+        break;
+      case "pop":
+        guestList.pop();
+        break;
+      case "reverse":
+        const reversedArray = guestList.reverse();
+        guestList = reversedArray;
+        break;
+      case "removeFromTo":
+        const removeFrom = Number(
+          document.querySelector('input[name="removeFrom"]').value - 1
+        );
+        const removeTo = Number(
+          document.querySelector('input[name="removeTo"]').value - 1
+        );
+        if (removeFrom >= 0 && removeTo >= 0) {
+          guestList.splice(removeFrom, removeTo);
+          updateGuestList();
+        } else if (removeFrom >= 0 && removeTo <= 0) {
+          guestList.splice(removeFrom, removeFrom);
+          updateGuestList();
+        }
+        break;
+      case "atCertainPoint":
+        const insertAt =
+          document.querySelector('input[name="certainPointInstertAt"]').value -
+          1;
+        const guestName = document.querySelector(
+          'input[name="certainPointGuestName"]'
+        ).value;
+        guestList.splice(insertAt, 0, guestName);
+        break;
+      case "moveLastToFirst":
+        guestList.unshift(guestList.pop());
+        break;
+      case "moveFirstToLast":
+        guestList.push(guestList.shift());
+        break;
     }
+    updateGuestList();
   });
 });
 
@@ -79,8 +73,9 @@ function updateGuestList() {
 }
 
 window.addEventListener("load", () => {
-  const guestListData = JSON.parse(window.localStorage.getItem("guestList"));
-  console.log(guestListData);
-  guestList = guestListData;
-  updateGuestList();
+  if (JSON.parse(window.localStorage.getItem("guestList"))) {
+    const guestListData = JSON.parse(window.localStorage.getItem("guestList"));
+    guestList = guestListData;
+    updateGuestList();
+  }
 });
