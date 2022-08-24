@@ -53,10 +53,14 @@ document.querySelectorAll("button").forEach((button) => {
         guestList.push(guestList.shift());
         break;
       case "sortAZ":
-        guestList.sort((a, z) => (a < z ? -1 : 1));
+        guestList.sort((a, b) =>
+          a.localeCompare(b, "lt", { ignorePunctuation: true })
+        );
         break;
       case "sortZA":
-        guestList.sort((z, a) => (z < a ? 1 : -1));
+        guestList.sort((a, b) =>
+          b.localeCompare(a, "lt", { ignorePunctuation: true })
+        );
         break;
     }
     window.localStorage.setItem("guestList", JSON.stringify(guestList));
