@@ -52,6 +52,12 @@ document.querySelectorAll("button").forEach((button) => {
       case "moveFirstToLast":
         guestList.push(guestList.shift());
         break;
+      case "sortAZ":
+        guestList.sort((a, z) => (a < z ? -1 : 1));
+        break;
+      case "sortZA":
+        guestList.sort((z, a) => (z < a ? 1 : -1));
+        break;
     }
     window.localStorage.setItem("guestList", JSON.stringify(guestList));
     updateGuestList();
